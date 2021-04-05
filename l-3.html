@@ -1,0 +1,42 @@
+<script>
+    let a = 0;
+    while (a < 100) {
+        for (let b = 2; b < a; b++) {
+            if (a % b == 0) {
+                a++
+            }
+        }
+        if (a < 100 && a > 1) {
+            alert( a );
+        }
+        a++
+    }
+</script>
+
+<script>
+    var cart = [['product1',2000,3],['product2',799,2],['product3',250,4]];
+    function countBasketPrice(cart) {
+        let sum = 0;
+        let volume = 0;
+        for (let i = 0; i < cart.length; i++) {
+            sum = sum + cart[i][1];
+            volume = volume + cart[i][2];
+        }
+        return 'Сумма товаров в корзине: '+sum+'\nКол-во товаров в корзине: '+volume;
+    }
+    alert(countBasketPrice(cart))
+</script>
+
+<script>
+    for (i = 0; i < 10; console.log(i++)) {
+
+    }
+</script>
+
+<script>
+    var a = '';
+    for (i = 0; i < 20; i++) {
+        a = a + 'x';
+        console.log(a)
+    }
+</script>
