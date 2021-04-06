@@ -19,7 +19,7 @@
         let sum = 0;
         let volume = 0;
         for (let i = 0; i < cart.length; i++) {
-            sum = sum + cart[i][1];
+            sum = sum + (cart[i][1]*cart[i][2]);
             volume = volume + cart[i][2];
         }
         return 'Сумма товаров в корзине: '+sum+'\nКол-во товаров в корзине: '+volume;
