@@ -1,0 +1,15 @@
+<script>
+    var h = parseInt(prompt('Введите 3-х значное число: '));
+    function getResult (number) {        
+        var a = [];
+        var b = number;
+        let {
+                ones = b[2],
+                tens = b[1],
+                handreds = b[0],
+            }
+        for (var i = 0; i < 3; i++) {
+            a.push(b % 10);
+        }
+    }
+</script>
