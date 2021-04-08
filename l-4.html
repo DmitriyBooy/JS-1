@@ -1,15 +1,18 @@
 <script>
-    var h = parseInt(prompt('Введите 3-х значное число: '));
-    function getResult (number) {        
-        var a = [];
-        var b = number;
-        let {
-                ones = b[2],
-                tens = b[1],
-                handreds = b[0],
-            }
+    var number = parseInt(prompt('Введите 3-х значное число: '));
+    function getResult (num) {  
+        let numbers = {};
         for (var i = 0; i < 3; i++) {
-            a.push(b % 10);
+            if (!numbers.o) {
+                numbers.o = num % 10;
+            } else if (!numbers.t) {
+                numbers.t = num % 10;
+            } else {
+                numbers.h = num % 10;
+            }
+            num = Math.floor(num / 10);
         }
+        return numbers;
     }
+    console.log(getResult(number))
 </script>
