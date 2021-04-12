@@ -1,0 +1,34 @@
+.black {
+    background-color: rgb(141, 87, 17);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.black-figure {
+    color: black;
+    fill: black;
+}
+
+.white {
+    background-color: rgb(226, 180, 120);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.white-figure {
+    color: white;
+    fill: white;
+    filter: invert(100%)
+}
+
+.row {
+    display: flex;
+    height: 80px;
+    width: 640px;
+}

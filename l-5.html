@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+<script> 
+    var body = document.querySelector('body');
+    var white = true;
+
+    // Цикл генерации доски
+    for (let i = 1; i <= 8; i++) {
+        var row = document.createElement('div');
+        row.className = 'row row_'+i;
+        body.appendChild(row);
+        for (let n = 0; n < 8; n++) {
+            var column = ['A','B','C','D','E','F','G','H']
+            var square = document.createElement('div');
+            var getRow = document.querySelector('.row_'+i);
+            square.className = 'square_'+(n+1)+' '+(white ? 'white ' : 'black ')+column[n];
+            getRow.appendChild(square);
+            if (n != 7) {
+                white = !white;
+            }
+        }
+    }
+
+    // Цикл генерации фигур
+    for (let y = 1; y <= 8; y++) {
+        var getRow = document.querySelector('.row_'+y);
+        if (y == 1 || y == 8) {
+            for (let h = 1; h <= 8; h++) {
+                var getSquare = getRow.querySelector('.square_'+h);
+                var figure = ['Ладья','Конь','Слон','Король','Королева','Пешка'];
+                switch(h) {
+                    case 1: if (y == 1) {
+                        getSquare.innerHTML = '<img src="lad.svg" class="black-figure">';
+                    } else {
+                        getSquare.innerHTML = '<img src="lad.svg" class="white-figure">';
+                    };
+                    break;
+                    case 2: if (y == 1) {
+                        getSquare.innerHTML = '<img src="kon.svg" class="black-figure">';
+                    } else {
+                        getSquare.innerHTML = '<img src="kon.svg" class="white-figure">';
+                    };
+                    break;
+                    case 3: if (y == 1) {
+                        getSquare.innerHTML = '<img src="slon.svg" class="black-figure">';
+                    } else {
+                        getSquare.innerHTML = '<img src="slon.svg" class="white-figure">';
+                    };
+                    break;
+                    case 4: if(y == 1) {
+                        getSquare.innerHTML = '<img src="korol.svg" class="black-figure">';
+                    } else {
+                        getSquare.innerHTML = '<img src="koroleva.svg" class="white-figure">';
+                    }
+                    break;
+                    case 5: if(y == 1) {
+                        getSquare.innerHTML = '<img src="koroleva.svg" class="black-figure">';
+                    } else {
+                        getSquare.innerHTML = '<img src="korol.svg" class="white-figure">';
+                    }
+                    break;
+                    case 6: if (y == 1) {
+                        getSquare.innerHTML = '<img src="slon.svg" class="black-figure">';
+                    } else {
+                        getSquare.innerHTML = '<img src="slon.svg" class="white-figure">';
+                    };
+                    break;
+                    case 7: if (y == 1) {
+                        getSquare.innerHTML = '<img src="kon.svg" class="black-figure">';
+                    } else {
+                        getSquare.innerHTML = '<img src="kon.svg" class="white-figure">';
+                    };
+                    break;
+                    case 8: if (y == 1 ) {
+                        getSquare.innerHTML = '<img src="lad.svg" class="black-figure">';
+                    } else {
+                        getSquare.innerHTML = '<img src="lad.svg" class="white-figure">';
+                    };
+                    break;
+                }
+            }
+        } else if (y == 2 || y == 7) {
+            for (let h = 1; h <= 8; h++) {
+                var getSquare = getRow.querySelector('.square_'+h);
+                if (y == 2) {
+                    getSquare.innerHTML = '<img src="peshka.svg" class="black-figure">';
+                } else {
+                    getSquare.innerHTML = '<img src="peshka.svg" class="white-figure">';
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
