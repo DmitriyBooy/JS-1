@@ -1,3 +1,9 @@
+.board {
+    width: 800px;
+    height: 800px;
+    text-align: center;
+}
+
 .black {
     background-color: rgb(141, 87, 17);
     width: 80px;
@@ -31,4 +37,8 @@
     display: flex;
     height: 80px;
     width: 640px;
+}
+
+.rows {
+    height: 80px;
 }

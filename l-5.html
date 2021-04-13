@@ -1,22 +1,137 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<body>
-<script> 
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <script> 
     var body = document.querySelector('body');
-    var white = true;
+    var board = document.createElement('div');
+    board.className = 'board';
+    var fieldAndRows = document.createElement('div');
+    fieldAndRows.style = 'display: flex;';
+    var field = document.createElement('div');
+    
+    // Генерация полей с названием столбов
+    var columnsTop = document.createElement('div');
+    columnsTop.classname = 'columns-top';
+    columnsTop.style.cssText =`
+    display: flex;
+    justify-content: center;
+    `
 
+    for (g = 1; g <= 8; g++) {
+        let columns = document.createElement('div');
+        let columnName = ['A','B','C','D','E','F','G','H']
+        columns.innerHTML = '<strong>'+columnName[(g-1)]+'</strong>';
+        columns.className ='column_'+g;
+        columns.style.cssText=`
+        transform: rotate(180deg);
+        width: 80px;
+        height: 80px;
+        font-size: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        `
+        columnsTop.append(columns);
+    }
+
+
+    var columnsBottom = document.createElement('div');
+    columnsBottom.classname = 'columns-bottom';
+    columnsBottom.style.cssText =`
+    display: flex;    
+    justify-content: center;
+    `
+    
+    for (g = 1; g <= 8; g++) {
+        let columns = document.createElement('div');
+        let columnsName = ['A','B','C','D','E','F','G','H']
+        columns.innerHTML = '<strong>'+columnsName[(g-1)]+'</strong>';
+        columns.className ='column_'+g;
+        columns.style.cssText=`
+        width: 80px;
+        height: 80px;
+        font-size: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        `
+        columnsBottom.append(columns);
+    }
+    // 
+    
+    // Генерация полей с названиями строк
+    var rowsIconLeft = document.createElement('div');
+    rowsIconLeft.className = 'rows_icon';
+    rowsIconLeft.style.cssText =`
+    height: 640px;
+    align-items: center;
+    justify-content: center;
+    `
+
+    for (g = 8; g >= 1; g--) {
+        let rows = document.createElement('div');
+        rows.innerHTML = '<strong>'+g+'</strong>';
+        rows.className ='rows_'+g;
+        rows.style.cssText=`
+        width: 80px;
+        height: 80px;
+        font-size: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        `
+        rowsIconLeft.append(rows);
+    }
+
+
+    var rowsIconRight = document.createElement('div');
+    rowsIconRight.className = 'rows_icon';
+    rowsIconRight.style.cssText =`
+    height: 640px;
+    align-items: center;
+    justify-content: center;
+    `
+    for (g = 8; g >= 1; g--) {
+        let rows = document.createElement('div');
+        rows.innerHTML = '<strong>'+g+'</strong>';
+        rows.className ='rows_'+g;
+        rows.style.cssText=`
+        transform: rotate(180deg);
+        width: 80px;
+        height: 80px;
+        font-size: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        `
+        rowsIconRight.append(rows);
+    }
+    
+    // 
+    
     // Цикл генерации доски
+    var white = true;
+    field.className = 'field';
+    field.style.cssText =`
+    height: 640px;
+    width: 640px;
+    `
+    body.appendChild(board);
+    board.prepend(columnsTop);
+    board.appendChild(fieldAndRows);
+    fieldAndRows.appendChild(field);
+    fieldAndRows.prepend(rowsIconLeft);
     for (let i = 1; i <= 8; i++) {
         var row = document.createElement('div');
         row.className = 'row row_'+i;
-        body.appendChild(row);
+        field.appendChild(row);
         for (let n = 0; n < 8; n++) {
             var column = ['A','B','C','D','E','F','G','H']
             var square = document.createElement('div');
@@ -28,6 +143,8 @@
             }
         }
     }
+    fieldAndRows.append(rowsIconRight);
+    board.append(columnsBottom);
 
     // Цикл генерации фигур
     for (let y = 1; y <= 8; y++) {
@@ -38,51 +155,51 @@
                 var figure = ['Ладья','Конь','Слон','Король','Королева','Пешка'];
                 switch(h) {
                     case 1: if (y == 1) {
-                        getSquare.innerHTML = '<img src="lad.svg" class="black-figure">';
+                        getSquare.innerHTML = '<img src="svg/lad.svg" class="black-figure">';
                     } else {
-                        getSquare.innerHTML = '<img src="lad.svg" class="white-figure">';
+                        getSquare.innerHTML = '<img src="svg/lad.svg" class="white-figure">';
                     };
                     break;
                     case 2: if (y == 1) {
-                        getSquare.innerHTML = '<img src="kon.svg" class="black-figure">';
+                        getSquare.innerHTML = '<img src="svg/kon.svg" class="black-figure">';
                     } else {
-                        getSquare.innerHTML = '<img src="kon.svg" class="white-figure">';
+                        getSquare.innerHTML = '<img src="svg/kon.svg" class="white-figure">';
                     };
                     break;
                     case 3: if (y == 1) {
-                        getSquare.innerHTML = '<img src="slon.svg" class="black-figure">';
+                        getSquare.innerHTML = '<img src="svg/slon.svg" class="black-figure">';
                     } else {
-                        getSquare.innerHTML = '<img src="slon.svg" class="white-figure">';
+                        getSquare.innerHTML = '<img src="svg/slon.svg" class="white-figure">';
                     };
                     break;
                     case 4: if(y == 1) {
-                        getSquare.innerHTML = '<img src="korol.svg" class="black-figure">';
+                        getSquare.innerHTML = '<img src="svg/korol.svg" class="black-figure">';
                     } else {
-                        getSquare.innerHTML = '<img src="koroleva.svg" class="white-figure">';
+                        getSquare.innerHTML = '<img src="svg/koroleva.svg" class="white-figure">';
                     }
                     break;
                     case 5: if(y == 1) {
-                        getSquare.innerHTML = '<img src="koroleva.svg" class="black-figure">';
+                        getSquare.innerHTML = '<img src="svg/koroleva.svg" class="black-figure">';
                     } else {
-                        getSquare.innerHTML = '<img src="korol.svg" class="white-figure">';
+                        getSquare.innerHTML = '<img src="svg/korol.svg" class="white-figure">';
                     }
                     break;
                     case 6: if (y == 1) {
-                        getSquare.innerHTML = '<img src="slon.svg" class="black-figure">';
+                        getSquare.innerHTML = '<img src="svg/slon.svg" class="black-figure">';
                     } else {
-                        getSquare.innerHTML = '<img src="slon.svg" class="white-figure">';
+                        getSquare.innerHTML = '<img src="svg/slon.svg" class="white-figure">';
                     };
                     break;
                     case 7: if (y == 1) {
-                        getSquare.innerHTML = '<img src="kon.svg" class="black-figure">';
+                        getSquare.innerHTML = '<img src="svg/kon.svg" class="black-figure">';
                     } else {
-                        getSquare.innerHTML = '<img src="kon.svg" class="white-figure">';
+                        getSquare.innerHTML = '<img src="svg/kon.svg" class="white-figure">';
                     };
                     break;
                     case 8: if (y == 1 ) {
-                        getSquare.innerHTML = '<img src="lad.svg" class="black-figure">';
+                        getSquare.innerHTML = '<img src="svg/lad.svg" class="black-figure">';
                     } else {
-                        getSquare.innerHTML = '<img src="lad.svg" class="white-figure">';
+                        getSquare.innerHTML = '<img src="svg/lad.svg" class="white-figure">';
                     };
                     break;
                 }
@@ -91,9 +208,9 @@
             for (let h = 1; h <= 8; h++) {
                 var getSquare = getRow.querySelector('.square_'+h);
                 if (y == 2) {
-                    getSquare.innerHTML = '<img src="peshka.svg" class="black-figure">';
+                    getSquare.innerHTML = '<img src="svg/peshka.svg" class="black-figure">';
                 } else {
-                    getSquare.innerHTML = '<img src="peshka.svg" class="white-figure">';
+                    getSquare.innerHTML = '<img src="svg/peshka.svg" class="white-figure">';
                 }
             }
         }
